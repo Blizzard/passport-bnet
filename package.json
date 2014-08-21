@@ -1,0 +1,39 @@
+{
+  "name": "passport-bnet",
+  "version": "1.0.0",
+  "description": "Bnet authentication strategy for Passport.",
+  "keywords": [
+    "passport",
+    "bnet",
+    "battlenet",
+    "auth",
+    "oauth",
+    "authentication",
+    "identity"
+  ],
+  "author": {
+    "name": "Christopher Giroir",
+    "email": "cgiroir@blizzard.com",
+    "url": "https://dev.battle.net/"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/Blizzard/passport-bnet.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    }
+  ],
+  "main": "./lib",
+  "dependencies": {
+    "passport-oauth2": "^1.1.2"
+  },
+  "engines": {
+    "node": ">= 0.10.30"
+  },
+  "devDependencies": {
+    "async": "^0.9.0"
+  }
+}
