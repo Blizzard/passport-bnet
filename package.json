@@ -28,12 +28,13 @@
   ],
   "main": "./lib",
   "dependencies": {
-    "passport-oauth2": "^1.1.2"
+    "passport-oauth2": "^1.1.2",
+    "async": "^0.9.0"
   },
   "engines": {
     "node": ">= 0.10.30"
   },
   "devDependencies": {
-    "async": "^0.9.0"
+    
   }
 }
