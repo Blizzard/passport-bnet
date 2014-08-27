@@ -17,8 +17,8 @@
     "url": "https://dev.battle.net/"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/Blizzard/passport-bnet.git"
+    "type": "git",
+    "url": "https://github.com/Blizzard/passport-bnet.git"
   },
   "licenses": [
     {
@@ -35,6 +35,15 @@
     "node": ">= 0.10.30"
   },
   "devDependencies": {
-    
+    "jshint": "^2.5.4",
+    "mocha": "^1.21.4",
+    "chai": "^1.9.1",
+    "chai-passport-strategy": "^0.2.0",
+    "istanbul": "^0.3.0"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec --require test/bootstrap/node test/*.test.js",
+    "pretest": "jshint lib/index.js lib/strategy.js",
+    "coverage": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec -r test/bootstrap/node test/*.test.js"
   }
 }
