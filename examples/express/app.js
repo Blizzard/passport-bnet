@@ -83,6 +83,16 @@ app.get('/', function(req, res) {
     var output = '<h1>Express OAuth Test</h1>' + req.user.id + '<br>';
     if(req.user.battletag) {
       output += req.user.battletag + '<br>';
+      output += '<h3>World of Warcraft</h3>';
+      for (key in req.user.wowcharacters) {
+        char = req.user.wowcharacters[key];
+        output += char.name +' ('+char.level+') '+char.guild+'@'+char.realm+'<br>';
+      }
+      output += '<h3>StarCraft2</h3>';
+      for (key in req.user.sc2profile) {
+        char = req.user.sc2profile[key];
+        output += '<img src="'+char.avatar.url+'">'+char.displayName+'<br>';
+      }
     }
     output += '<a href="/logout">Logout</a>';
     res.send(output);
