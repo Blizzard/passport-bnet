@@ -1,6 +1,6 @@
 {
   "name": "passport-bnet",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Bnet authentication strategy for Passport.",
   "keywords": [
     "passport",
@@ -17,8 +17,8 @@
     "url": "https://dev.battle.net/"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/Blizzard/passport-bnet.git"
+    "type": "git",
+    "url": "https://github.com/Blizzard/passport-bnet.git"
   },
   "licenses": [
     {
@@ -34,7 +34,5 @@
   "engines": {
     "node": ">= 0.10.30"
   },
-  "devDependencies": {
-    
-  }
+  "devDependencies": {}
 }
