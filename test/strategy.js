@@ -25,6 +25,33 @@ describe('Strategy', function() {
     }).to.throw(TypeError);
   });
 
+  describe('Strategy constructor', function(){
+    var regionTests = [
+      {masheryExpected:'api.battlenet.com.cn', oauth2Expected:'www.battlenet.com.cn', condition:'region name is "cn"', regionName:'cn'},
+      {masheryExpected:'us.api.battle.net', oauth2Expected:'us.battle.net', condition:'no region name is provided', regionName:''},
+      {masheryExpected:'foobar.api.battle.net', oauth2Expected:'foobar.battle.net', condition:'region name is "foobar" (whatever, except from empty or cn)', regionName:'foobar'}
+    ];
+    regionTests.forEach(function(regionTest){
+      it('should set oauth2 hostname to "'+regionTest.oauth2Expected+'" if '+regionTest.condition, function(){
+        //setup
+        //action
+        var strategy = new BnetStrategy({clientID:'foo', clientSecret:'bar', region:regionTest.regionName}, sinon.spy());
+        //assert
+        expect(strategy._oauth2._authorizeUrl).to.equal('https://'+regionTest.oauth2Expected+'/oauth/authorize');
+        expect(strategy._oauth2._accessTokenUrl).to.equal('https://'+regionTest.oauth2Expected+'/oauth/token');
+      });
+
+      it('should set mashery hostname to "'+regionTest.masheryExpected+'" if '+regionTest.condition, function(){
+        //setup
+        //action
+        var strategy = new BnetStrategy({clientID:'foo', clientSecret:'bar', region:regionTest.regionName}, sinon.spy());
+        //assert
+        expect(strategy._profileUrl).to.equal('https://'+regionTest.masheryExpected+'/account/user');
+      });
+    });
+  });
+
+  //what about empty options ?
   describe('User profile', function() {
 
     var _oauth2Stub;
