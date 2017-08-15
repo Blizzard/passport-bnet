@@ -24,10 +24,11 @@
   "main": "./lib",
   "scripts": {
     "test": "mocha test/**/*.js",
+    "lint": "eslint lib/",
+    "lint-fix": "eslint lib/ --fix",
     "qualimetry": "istanbul cover _mocha --dir qualimetry/cover -- -R spec test/*"
   },
   "dependencies": {
-    "async": "^0.9.0",
     "passport-oauth2": "^1.1.2"
   },
   "engines": {
@@ -35,6 +36,13 @@
   },
   "devDependencies": {
     "chai": "^3.4.1",
+    "eslint": "^4.4.1",
+    "eslint-config-airbnb-base": "^11.3.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
     "istanbul": "^0.4.3",
     "mocha": "^2.3.4",
     "sinon": "^1.17.2"
