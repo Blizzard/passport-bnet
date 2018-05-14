@@ -2,7 +2,7 @@ var chai = require('chai');
 var assert = chai.assert;
 var expect = chai.expect;
 var sinon = require('sinon');
-var BnetStrategy = require('../lib/index').Strategy;
+var BnetStrategy = require('../src/index').Strategy;
 
 
 describe('Strategy', function() {

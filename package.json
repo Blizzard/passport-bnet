@@ -21,30 +21,30 @@
     "url": "https://github.com/Blizzard/passport-bnet.git"
   },
   "license": "MIT",
-  "main": "./lib",
+  "main": "./src",
   "scripts": {
     "test": "mocha test/**/*.js",
-    "lint": "eslint lib/",
-    "lint-fix": "eslint lib/ --fix",
+    "lint": "eslint src/",
+    "lint-fix": "eslint src/ --fix",
     "qualimetry": "istanbul cover _mocha --dir qualimetry/cover -- -R spec test/*"
   },
   "dependencies": {
-    "passport-oauth2": "^1.1.2"
+    "passport-oauth2": "^1.4.0"
   },
   "engines": {
     "node": ">= 0.10.30"
   },
   "devDependencies": {
-    "chai": "^3.4.1",
+    "chai": "^4.1.2",
     "eslint": "^4.4.1",
-    "eslint-config-airbnb-base": "^11.3.1",
-    "eslint-config-standard": "^10.2.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
     "istanbul": "^0.4.3",
-    "mocha": "^2.3.4",
-    "sinon": "^1.17.2"
+    "mocha": "^5.1.1",
+    "sinon": "^5.0.7"
   }
 }
