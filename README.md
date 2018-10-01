@@ -5,7 +5,7 @@ version](https://badge.fury.io/js/passport-bnet.svg)](http://badge.fury.io/js/pa
 
 This is an Node.js Passport strategy for authenticating to Blizzard's Battle.net OAuth
 service. In order to use it you need to register an application at the
-[Battle.net Developer Portal](https://dev.battle.net)
+[Battle.net Developer Portal](https://develop.battle.net/)
 
 ## Installation
 
