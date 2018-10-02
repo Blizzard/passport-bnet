@@ -27,27 +27,6 @@ function getHost (region) {
 }
 
 /**
- * `getMasheryHost` utility function
- *
- * Takes a two character region code and returns a Mashery host URL
- *
- *Examples:
- *
- *     getMasheryHost('us');  // returns 'us.api.battle.net'
- *
- * @param {String} region
- * @return {String}
- * @api protected
- */
-function getMasheryHost (region) {
-  if (region === 'cn') {
-    return 'api.battlenet.com.cn'
-  } else {
-    return region + '.api.battle.net'
-  }
-}
-
-/**
  * `Strategy` constructor.
  *
  * The Bnet authentication strategy authenticates requests by delegating to
@@ -97,7 +76,7 @@ function Strategy (options, verify) {
     throw new TypeError('OAuth2Strategy requires a clientSecret option')
   }
   this.name = 'bnet'
-  this._profileUrl = options.userURL || 'https://' + getMasheryHost(options.region) + '/account/user'
+  this._profileUrl = options.userURL || 'https://' + getHost(options.region) + '/oauth/userinfo'
   this._oauth2.useAuthorizationHeaderforGET(true)
 }
 

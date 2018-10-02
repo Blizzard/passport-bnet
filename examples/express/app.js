@@ -26,7 +26,7 @@ passport.use(
   new GitHubStrategy(
     { clientID: GITHUB_ID,
       clientSecret: GITHUB_SECRET,
-      callbackURL: "https://local.test.battle.net/auth/github/callback" },
+      callbackURL: "https://localhost/auth/github/callback" },
     function(accessToken, refreshToken, profile, done) {
       process.nextTick(function () {
         return done(null, profile);
@@ -40,7 +40,7 @@ passport.use(
     { clientID: BNET_ID,
       clientSecret: BNET_SECRET,
       scope: "wow.profile sc2.profile",
-      callbackURL: "https://local.test.battle.net/auth/bnet/callback" },
+      callbackURL: "https://localhost/auth/bnet/callback" },
     function(accessToken, refreshToken, profile, done) {
       process.nextTick(function () {
         return done(null, profile);
