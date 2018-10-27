@@ -22,7 +22,7 @@ function getHost (region) {
   if (region === 'cn') {
     return 'www.battlenet.com.cn'
   }
-  returnregion + '.battle.net'
+  return region + '.battle.net'
 }
 
 /**
