@@ -1,9 +1,9 @@
 /**
  * Module dependencies.
  */
-let util = require('util')
-let OAuth2Strategy = require('passport-oauth2')
-let InternalOAuthError = require('passport-oauth2').InternalOAuthError
+const util = require('util')
+const OAuth2Strategy = require('passport-oauth2')
+const InternalOAuthError = require('passport-oauth2').InternalOAuthError
 
 /**
  * `getHost` utility function

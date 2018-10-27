@@ -1,12 +1,12 @@
-let express = require('express');
-let passport = require('passport');
-let util = require('util');
+const express = require('express');
+const passport = require('passport');
+const util = require('util');
 
-let cookieParser = require('cookie-parser');
-let session = require('express-session');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
-let BnetStrategy = require('passport-bnet').Strategy;
-let GitHubStrategy = require('passport-github').Strategy;
+const BnetStrategy = require('passport-bnet').Strategy;
+const GitHubStrategy = require('passport-github').Strategy;
 
 let GITHUB_ID = process.env.GITHUB_ID;
 let GITHUB_SECRET = process.env.GITHUB_SECRET;

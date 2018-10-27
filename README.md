@@ -15,9 +15,9 @@ service. In order to use it you need to register an application at the
 
 ### Configure
 ```js
-let BnetStrategy = require('passport-bnet').Strategy;
-let BNET_ID = process.env.BNET_ID
-let BNET_SECRET = process.env.BNET_SECRET
+const BnetStrategy = require('passport-bnet').Strategy;
+const BNET_ID = process.env.BNET_ID
+const BNET_SECRET = process.env.BNET_SECRET
 
 // Use the BnetStrategy within Passport.
 passport.use(new BnetStrategy({

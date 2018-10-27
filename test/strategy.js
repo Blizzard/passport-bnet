@@ -1,8 +1,8 @@
-let chai = require('chai');
-let assert = chai.assert;
-let expect = chai.expect;
-let sinon = require('sinon');
-let BnetStrategy = require('../src/index').Strategy;
+const chai = require('chai');
+const assert = chai.assert;
+const expect = chai.expect;
+const sinon = require('sinon');
+const BnetStrategy = require('../src/index').Strategy;
 
 
 describe('Strategy', function() {
