@@ -7,10 +7,10 @@ const session = require('express-session');
 const BnetStrategy = require('passport-bnet').Strategy;
 const GitHubStrategy = require('passport-github').Strategy;
 
-let GITHUB_ID = process.env.GITHUB_ID;
-let GITHUB_SECRET = process.env.GITHUB_SECRET;
-let BNET_ID = process.env.BNET_ID;
-let BNET_SECRET = process.env.BNET_SECRET;
+const GITHUB_ID = process.env.GITHUB_ID;
+const GITHUB_SECRET = process.env.GITHUB_SECRET;
+const BNET_ID = process.env.BNET_ID;
+const BNET_SECRET = process.env.BNET_SECRET;
 
 passport.serializeUser(function(user, done) {
     done(null, user);
