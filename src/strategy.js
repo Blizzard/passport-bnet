@@ -109,9 +109,10 @@ Strategy.prototype.userProfile = function (accessToken, done) {
       return done(new Error('Failed to parse the user id'))
     }
 
-    let profile = json
-    profile.provider = 'bnet'
-    profile.token = accessToken
+    let profile = Object.assign(json, {
+      provider: 'bnet',
+      token: accessToken,
+    })
 
     return done(null, profile)
   })
