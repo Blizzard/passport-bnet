@@ -22,7 +22,7 @@ function getHost (region) {
   if (region === 'cn') {
     return 'www.battlenet.com.cn'
   }
-  return region + '.battle.net'
+  returnregion + '.battle.net'
 }
 
 /**
@@ -96,7 +96,7 @@ util.inherits(Strategy, OAuth2Strategy)
  * @api protected
  */
 Strategy.prototype.userProfile = function (accessToken, done) {
-  this._oauth2.get(this._profileUrl, accessToken, function (err, body, res) {
+  this._oauth2.get(this._profileUrl, accessToken, function (err, body) {
     var json
 
     if (err) {
