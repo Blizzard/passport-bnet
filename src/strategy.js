@@ -62,20 +62,21 @@ function getHost (region) {
  * @param {Function} verify
  * @api public
  */
-function Strategy (options, verify) {
-  options = options || {}
-  options.region = options.region || 'us'
-  options.authorizationURL = options.authorizationURL || 'https://' + getHost(options.region) + '/oauth/authorize'
-  options.tokenURL = options.tokenURL || 'https://' + getHost(options.region) + '/oauth/token'
-  options.scopeSeparator = options.scopeSeparator || ' '
-  options.customHeaders = options.customHeaders || {}
+function Strategy (options = {}, verify) {
+  this._options = Object.assign({
+    region: 'us',
+    authorizationURL: 'https://' + getHost(options.region) + '/oauth/authorize',
+    tokenURL: 'https://' + getHost(options.region) + '/oauth/token',
+    scopeSeparator: ' ',
+    customHeaders: {},
+  }, options)
 
-  OAuth2Strategy.call(this, options, verify)
-  if (!options.clientSecret) {
+  OAuth2Strategy.call(this, this._options, verify)
+  if (!this._options.clientSecret) {
     throw new TypeError('OAuth2Strategy requires a clientSecret option')
   }
   this.name = 'bnet'
-  this._profileUrl = options.userURL || 'https://' + getHost(options.region) + '/oauth/userinfo'
+  this._profileUrl = this._options.userURL || 'https://' + getHost(this.options.region) + '/oauth/userinfo'
   this._oauth2.useAuthorizationHeaderforGET(true)
 }
 
