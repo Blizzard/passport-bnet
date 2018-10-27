@@ -1,9 +1,9 @@
 /**
  * Module dependencies.
  */
-var util = require('util')
-var OAuth2Strategy = require('passport-oauth2')
-var InternalOAuthError = require('passport-oauth2').InternalOAuthError
+let util = require('util')
+let OAuth2Strategy = require('passport-oauth2')
+let InternalOAuthError = require('passport-oauth2').InternalOAuthError
 
 /**
  * `getHost` utility function
@@ -97,7 +97,7 @@ util.inherits(Strategy, OAuth2Strategy)
  */
 Strategy.prototype.userProfile = function (accessToken, done) {
   this._oauth2.get(this._profileUrl, accessToken, function (err, body) {
-    var json
+    let json
 
     if (err) {
       return done(new InternalOAuthError('Failed to fetch the user id', err))
@@ -109,7 +109,7 @@ Strategy.prototype.userProfile = function (accessToken, done) {
       return done(new Error('Failed to parse the user id'))
     }
 
-    var profile = json
+    let profile = json
     profile.provider = 'bnet'
     profile.token = accessToken
 

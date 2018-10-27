@@ -1,17 +1,17 @@
-var express = require('express');
-var passport = require('passport');
-var util = require('util');
+let express = require('express');
+let passport = require('passport');
+let util = require('util');
 
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
+let cookieParser = require('cookie-parser');
+let session = require('express-session');
 
-var BnetStrategy = require('passport-bnet').Strategy;
-var GitHubStrategy = require('passport-github').Strategy;
+let BnetStrategy = require('passport-bnet').Strategy;
+let GitHubStrategy = require('passport-github').Strategy;
 
-var GITHUB_ID = process.env.GITHUB_ID;
-var GITHUB_SECRET = process.env.GITHUB_SECRET;
-var BNET_ID = process.env.BNET_ID;
-var BNET_SECRET = process.env.BNET_SECRET;
+let GITHUB_ID = process.env.GITHUB_ID;
+let GITHUB_SECRET = process.env.GITHUB_SECRET;
+let BNET_ID = process.env.BNET_ID;
+let BNET_SECRET = process.env.BNET_SECRET;
 
 passport.serializeUser(function(user, done) {
     done(null, user);
@@ -48,7 +48,7 @@ passport.use(
     })
 );
 
-var app = express();
+let app = express();
 
 // configure Express
 app.use(cookieParser());
@@ -80,7 +80,7 @@ app.get('/auth/bnet/callback',
 
 app.get('/', function(req, res) {
   if(req.isAuthenticated()) {
-    var output = '<h1>Express OAuth Test</h1>' + req.user.id + '<br>';
+    let output = '<h1>Express OAuth Test</h1>' + req.user.id + '<br>';
     if(req.user.battletag) {
       output += req.user.battletag + '<br>';
     }
@@ -98,6 +98,6 @@ app.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
-var server = app.listen(3000, function() {
+let server = app.listen(3000, function() {
   console.log('Listening on port %d', server.address().port);
 });
