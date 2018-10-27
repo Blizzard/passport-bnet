@@ -98,11 +98,10 @@ util.inherits(Strategy, OAuth2Strategy)
  */
 Strategy.prototype.userProfile = function (accessToken, done) {
   this._oauth2.get(this._profileUrl, accessToken, function (err, body) {
-    let json
-
     if (err) {
       return done(new InternalOAuthError('Failed to fetch the user id', err))
     }
+    let json
 
     try {
       json = JSON.parse(body)
