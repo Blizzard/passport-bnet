@@ -68,7 +68,7 @@ function Strategy (options = {}, verify) {
     authorizationURL: 'https://' + getHost(options.region) + '/oauth/authorize',
     tokenURL: 'https://' + getHost(options.region) + '/oauth/token',
     scopeSeparator: ' ',
-    customHeaders: {},
+    customHeaders: {}
   }, options)
 
   OAuth2Strategy.call(this, this._options, verify)
@@ -111,7 +111,7 @@ Strategy.prototype.userProfile = function (accessToken, done) {
 
     let profile = Object.assign(json, {
       provider: 'bnet',
-      token: accessToken,
+      token: accessToken
     })
 
     return done(null, profile)
