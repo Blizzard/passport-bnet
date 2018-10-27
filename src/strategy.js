@@ -21,9 +21,8 @@ var InternalOAuthError = require('passport-oauth2').InternalOAuthError
 function getHost (region) {
   if (region === 'cn') {
     return 'www.battlenet.com.cn'
-  } else {
-    return region + '.battle.net'
   }
+  return region + '.battle.net'
 }
 
 /**
