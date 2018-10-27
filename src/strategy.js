@@ -76,7 +76,7 @@ function Strategy (options = {}, verify) {
     throw new TypeError('OAuth2Strategy requires a clientSecret option')
   }
   this.name = 'bnet'
-  this._profileUrl = this._options.userURL || 'https://' + getHost(this.options.region) + '/oauth/userinfo'
+  this._profileUrl = this._options.userURL || 'https://' + getHost(this._options.region) + '/oauth/userinfo'
   this._oauth2.useAuthorizationHeaderforGET(true)
 }
 
