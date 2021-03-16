@@ -3,6 +3,7 @@
     "version": "0.0.1",
     "dependencies": {
         "express": ">= 0.0.0",
+        "dotenv": ">= 0.0.0",
         "cookie-parser": ">= 0.0.0",
         "express-session": ">= 0.0.0",
         "passport": ">= 0.0.0",
