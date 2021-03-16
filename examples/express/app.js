@@ -1,4 +1,10 @@
 /* ====
+    [Packages] - Require our dotenv file support.
+==== */
+
+require('dotenv').config();
+
+/* ====
     [Packages] - Packages required.
 ==== */
 
