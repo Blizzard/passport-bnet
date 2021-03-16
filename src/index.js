@@ -1,14 +1,13 @@
-/**
- * Module dependencies.
- */
-var Strategy = require('./strategy')
+/* ====
+    [Module] - Module dependencies.
+==== */
 
-/**
- * Expose `Strategy` directly from package.
- */
-module.exports = Strategy
+const Strategy = require('./strategy');
 
-/**
- * Export constructors.
- */
-module.exports.Strategy = Strategy
+/* ====
+    [Exports] - Export `Strategy` directly from package.
+    [Exports] - Export `Strategy` constructors.
+==== */
+
+module.exports = Strategy;
+module.exports.Strategy = Strategy;
