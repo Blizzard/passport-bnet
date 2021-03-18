@@ -1,17 +1,16 @@
-var express = require('express');
-var passport = require('passport');
-var util = require('util');
+require('dotenv').config();
 
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
+const express = require('express');
+const passport = require('passport');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const BnetStrategy = require('passport-bnet').Strategy;
 
-var BnetStrategy = require('passport-bnet').Strategy;
-var GitHubStrategy = require('passport-github').Strategy;
-
-var GITHUB_ID = process.env.GITHUB_ID;
-var GITHUB_SECRET = process.env.GITHUB_SECRET;
-var BNET_ID = process.env.BNET_ID;
-var BNET_SECRET = process.env.BNET_SECRET;
+const BNET_ID = process.env.BNET_OAUTH_CLIENT_ID;
+const BNET_SECRET = process.env.BNET_OAUTH_CLIENT_SECRET;
+const OAUTH_CALLBACK_URL = process.env.OAUTH_CALLBACK_URL || "http://localhost:3000/oauth/battlenet/callback";
+// Review full list of available scopes here: https://develop.battle.net/documentation/guides/using-oauth
+const OAUTH_SCOPES = process.env.OAUTH_SCOPES || "wow.profile";
 
 passport.serializeUser(function(user, done) {
     done(null, user);
@@ -21,26 +20,13 @@ passport.deserializeUser(function(obj, done) {
     done(null, obj);
 });
 
-// Use the GitHubStrategy within Passport.
-passport.use(
-  new GitHubStrategy(
-    { clientID: GITHUB_ID,
-      clientSecret: GITHUB_SECRET,
-      callbackURL: "https://localhost/auth/github/callback" },
-    function(accessToken, refreshToken, profile, done) {
-      process.nextTick(function () {
-        return done(null, profile);
-      });
-    })
-);
-
-// Use the BnetStrategy within Passport.
+// Register the BnetStrategy within Passport.
 passport.use(
   new BnetStrategy(
     { clientID: BNET_ID,
       clientSecret: BNET_SECRET,
-      scope: "wow.profile sc2.profile",
-      callbackURL: "https://localhost/auth/bnet/callback" },
+      scope: OAUTH_SCOPES,
+      callbackURL: OAUTH_CALLBACK_URL },
     function(accessToken, refreshToken, profile, done) {
       process.nextTick(function () {
         return done(null, profile);
@@ -48,31 +34,23 @@ passport.use(
     })
 );
 
-var app = express();
+const app = express();
 
 // configure Express
 app.use(cookieParser());
-app.use(session({ secret: 'blizzard',
+app.use(session({ secret: 'passport-battlenet-example', // Change this value to a unique value for your application!
                   saveUninitialized: true,
                   resave: true }));
 
-// Initialize Passport!  Also use passport.session() middleware, to support
+// Initialize Passport! Also use passport.session() middleware, to support
 // persistent login sessions (recommended).
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/auth/github', passport.authenticate('github'));
-
-app.get('/auth/github/callback',
-        passport.authenticate('github', { failureRedirect: '/' }),
-        function(req, res){
-          res.redirect('/');
-        });
-
-app.get('/auth/bnet',
+app.get('/oauth/battlenet',
         passport.authenticate('bnet'));
 
-app.get('/auth/bnet/callback',
+app.get('/oauth/battlenet/callback',
         passport.authenticate('bnet', { failureRedirect: '/' }),
         function(req, res){
           res.redirect('/');
@@ -80,16 +58,37 @@ app.get('/auth/bnet/callback',
 
 app.get('/', function(req, res) {
   if(req.isAuthenticated()) {
-    var output = '<h1>Express OAuth Test</h1>' + req.user.id + '<br>';
-    if(req.user.battletag) {
-      output += req.user.battletag + '<br>';
-    }
-    output += '<a href="/logout">Logout</a>';
+    const output = `
+      <html>
+        <body>
+          <h1>Express Passport-Bnet OAuth Example</h1>
+          <table>
+            <tr>
+              <th>Account ID</th>
+              <th>Battletag</th>
+            </tr>
+            <tr>
+              <td>${req.user.id}</td>
+              <td>${req.user.battletag}</td>
+            </tr>
+          </table>
+          <br />
+          <a href="/logout">Logout</a>
+        </body>
+      </html>
+    `;
     res.send(output);
   } else {
-    res.send('<h1>Express OAuth Test</h1>' +
-             '<a href="/auth/github">Login with Github</a><br>' +
-             '<a href="/auth/bnet">Login with Bnet</a>');
+    const output = `
+      <html>
+        <body>
+          <h1>Express Passport-Bnet OAuth Example</h1>
+          <br />
+          <a href="/oauth/battlenet">Login with Bnet</a>
+        </body>
+      </html>
+    `;
+    res.send(output);
   }
 });
 
@@ -98,6 +97,11 @@ app.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
-var server = app.listen(3000, function() {
+app.use(function (err, req, res, next) {
+  console.error(err);
+  res.send("<h1>Internal Server Error</h1>");
+});
+
+const server = app.listen(3000, function() {
   console.log('Listening on port %d', server.address().port);
 });
