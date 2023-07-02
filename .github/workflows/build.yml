@@ -34,4 +34,4 @@ jobs:
       - name: Install Dependencies
         run: yarn install
       - name: Build passport-bnet 
-        run: yarn build
+        run: npm install passport-bnet
