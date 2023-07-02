@@ -1,4 +1,4 @@
-name: CI
+name: Passport Bnet
 
 # Controls when the workflow will run
 on:
