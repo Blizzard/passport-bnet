@@ -1,5 +1,7 @@
 # Passport Bnet
 
+[![NPM  version](https://badge.fury.io/js/passport-bnet.svg)](http://badge.fury.io/js/passport-bnet)
+
 [![Passport Bnet](https://github.com/FreedomFaighter/passport-bnet/actions/workflows/build.yml/badge.svg)](https://github.com/FreedomFaighter/passport-bnet/actions/workflows/build.yml)
 
 This is an Node.js Passport strategy for authenticating to Blizzard's Battle.net OAuth
